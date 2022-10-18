@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from homne import views
+from django.contrib.auth.views import LoginView,LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index_view'),
-    path('register/',views.resgister,name='register')
-    
+    path('register/',views.resgister,name='register'),
+    path('login/',LoginView.as_view(template_name='home/login.html'),name='login'),
+    path('logout/',LogoutView.as_view(template_name='home/logout.html'),name='logout')
+
+
 
 ]
