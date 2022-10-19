@@ -2,13 +2,13 @@ from email import message
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
-from django.contrib.auth.forms import UserCreationForm 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required(login_url='login/')
 def index(request):
     return render(request,"home/index.html",{})
-
-
 
 def resgister (request):
     if request.method == 'POST':
@@ -24,3 +24,6 @@ def resgister (request):
     
   
     return render(request,'home/register.html',{'form':form})
+
+
+
