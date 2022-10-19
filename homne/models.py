@@ -1,3 +1,4 @@
+from pickle import TRUE
 from tkinter import CASCADE
 from tokenize import group
 from unittest.util import _MAX_LENGTH
@@ -12,6 +13,7 @@ class employees(models.Model):
     RFC = models.CharField(max_length=256)
     hora_entrada = models.TimeField()
     hora_salida = models.TimeField()
+ 
     
 
 
@@ -30,8 +32,8 @@ class piezas(models.Model):
 
 class orden_piezas(models.Model):
     id_orden = models.BigIntegerField()
-    nombre_empleado = models.ForeignKey(employees, on_delete= models.CASCADE)
-    nombre_empleado = models.ForeignKey(employees, on_delete= models.CASCADE)
+    nombre_empleado = models.ManyToManyField(employees)
+    nombre_empleado = models.ManyToManyField(employees)
     fecha_hora = models.DateTimeField()
     descripcion = models.OneToOneField(piezas, on_delete= models.CASCADE)
 
@@ -40,3 +42,7 @@ class orden_piezas(models.Model):
 
 
 
+class check(models.Model):
+    id_empleado = models.ManyToManyField(employees)
+    hora = models.TimeField(auto_now_add=TRUE)
+    descripcion = models.OneToOneField(piezas, on_delete= models.CASCADE)

@@ -17,6 +17,6 @@ class employeescreateform(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username','password1','password2']
+        fields = ['username','password1','password2','groups']
         
  
